@@ -61,12 +61,15 @@ WH40K.PositioningSystem = function (){
 				self.unitRepository = repo;
 		}
 
+		self.injectGeometry = function(geometry){
+				self.geometry = geometry;
+		}
+
 		self.calculateDistance = function(activeOffset, targetUnit){
-				//activeOffset = activeUnit.getElement().offset();
 				targetOffset = targetUnit.getElement().offset();
 				var x = (activeOffset.left) - (targetOffset.left + 25);
 				var y = (activeOffset.top) - (targetOffset.top + 25);
-				var distance = parseInt(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))) - 50;
+				var distance = self.geometry.getDistance(x, y) - 50;
 				return distance;
 		}
 }
