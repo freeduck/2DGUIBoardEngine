@@ -40,8 +40,9 @@ WH40K.PositioningSystem = function (){
 				var unitDist = 0;
 				for(i = 0; i < units.length; i++){
 						if(self.activeUnit !== units[i]){
-								unitDist = self.calculateDistance(offset, units[i]);
-								if(unitDist == 0){
+								curUnit = units[i];
+								unitDist = self.calculateDistance({left: moveEvent.pageX, top: moveEvent.pageY}, units[i]);
+								if(unitDist <= 0){
 										self.canMove = true;
 										return;
 								}
@@ -63,8 +64,8 @@ WH40K.PositioningSystem = function (){
 		self.calculateDistance = function(activeOffset, targetUnit){
 				//activeOffset = activeUnit.getElement().offset();
 				targetOffset = targetUnit.getElement().offset();
-				var x = (activeOffset.left) - (targetOffset.left);
-				var y = (activeOffset.top) - (targetOffset.top);
+				var x = (activeOffset.left) - (targetOffset.left + 25);
+				var y = (activeOffset.top) - (targetOffset.top + 25);
 				var distance = parseInt(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))) - 50;
 				return distance;
 		}
