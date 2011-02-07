@@ -8,13 +8,9 @@ WH40K.Engine = function (){
             self.showMoveRadius(unit);
         });
 
-        jQuery(document).mousemove(function (event){
-            if(!self.activeUnit){
-                return;
-            }
-            self.moveActiveUnit(event);
-        });
+
     }
+
     self.showMoveRadius = function(unit){
         var element = jQuery('img', unit.getElement());
         var offset = unit.getElement().offset();
@@ -35,12 +31,5 @@ WH40K.Engine = function (){
         });
     }
 
-    self.moveActiveUnit = function(moveEvent){
-        var element = self.activeUnit.getElement();
-        var offset = element.offset();
-        element.offset({
-            top: moveEvent.pageY - parseInt(element.height() / 2),
-            left: moveEvent.pageX - parseInt(element.width() / 2)
-            });
-    }
+    
 }
